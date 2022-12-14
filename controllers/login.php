@@ -1,13 +1,12 @@
-<?php session_start();
-//TODO: https://www.php.net/manual/en/ref.pdo-mysql.php
-require 'config.php';
+<?php 
+session_start();
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
 
         $username = $_POST['username'];
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT); //Hashing password with bcrypt
 
-        $conn = new mysqli($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_DATABASE);
+        $conn = new mysqli('localhost', 'root', '', 'projekt_si');
         // Check connection
         if ($conn->connect_error) {
             die("Connection failed: " . $conn->connect_error);
