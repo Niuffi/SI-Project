@@ -6,6 +6,9 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-
+        <?php
+        include("navbar.php");
+        ?>
+    Witaj !
     </body>
 </html>
