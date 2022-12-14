@@ -25,7 +25,6 @@ require 'config.php';
             header('Location: login.php?loginError="Incorrect username or password!"');
         }
         $conn->close();
-
         header('Location: home.php');
     } else {
         header('Location: login.php?loginError="Incorrect username or password!"');
