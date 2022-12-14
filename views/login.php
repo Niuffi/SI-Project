@@ -11,11 +11,10 @@
                 echo $_GET['loginError'];
             }
          ?>
-        <form action="loginScript.php" method="post">
+        <form action="login.php" method="post">
             Login:<input name="username" type="text">
             Password:<input name="password" type="password">
             <input type="submit" value="Log In">
-            asdasd
         </form>
     </body>
 </html>
