@@ -1,6 +1,11 @@
 <?php session_start();
 require_once('functions.php');
 
+//Show errors
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
     $_SESSION['loggedIn'] = false;
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
