@@ -12,7 +12,7 @@ error_reporting(E_ALL);
     if (isset($_POST['username']) && isset($_POST['password'])) {
 
         $username = $_POST['username'];
-        $password = $_POST['password']//password_hash($_POST['password'], PASSWORD_BCRYPT); //Hashing password with bcrypt
+        $password = $_POST['password'];//password_hash($_POST['password'], PASSWORD_BCRYPT); //Hashing password with bcrypt
 
         $db = connectDB();
 
