@@ -1,22 +1,22 @@
 <?php session_start();
+
 require_once('functions.php');
-require('config.php');
+
 
 //Show errors
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-    $_SESSION['loggedIn'] = false;
 
     if (isset($_POST['username']) && isset($_POST['password'])) {
 
         $username = $_POST['username'];
-        $password = password_hash($_POST['password'], PASSWORD_BCRYPT); //Hashing password with bcrypt
+        $password = $_POST['password']//password_hash($_POST['password'], PASSWORD_BCRYPT); //Hashing password with bcrypt
 
         $db = connectDB();
 
-        $sql = "SELECT ID, AccountType FROM user WHERE Password=$password and Login=$username;";
+        $sql = "SELECT ID, AccountType FROM user WHERE Password = $password and Login = $username;";
         $result = $db->query($sql);
 
         if ($result > 0) {

@@ -1,11 +1,10 @@
 <?php
 
-require "config.php";
-
 function connectDB()
 {
+    require 'config.php';
     try {
-        $db = new PDO("mysql:host=$DB_HOST;dbname=$DB_DATABSE;", $DB_USER, $DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+        $db = new PDO("mysql:host=$DB_HOST;dbname=$DB_DATABASE;", $DB_USER, $DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
         return $db;
     } catch (PDOException $e) {
         $e->getMessage();
