@@ -1,18 +1,15 @@
 <?php
 
+$db;
+
 function connectDB()
 {
-    require 'config.php';
     try {
-        $db = new PDO("mysql:host=$DB_HOST;dbname=$DB_DATABASE;", $DB_USER, $DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
-        return $db;
+        $db = new PDO('mysql:host=127.0.0.1;dbname=projekt_si;port=3306', 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
     } catch (PDOException $e) {
         $e->getMessage();
     }
-}
-
-function disconnectDB($db) {
-    $db->close;
+    return $db;
 }
 
 function printUserDataById($id)
@@ -38,7 +35,6 @@ function printUserDataById($id)
     $stmt->closeCursor();
     $stmt = null;
     $db->commit();
-    disconnectDB($db);
     return $headerInfo . $info;
 }
 
@@ -64,7 +60,6 @@ function showUsers()
     $stmt->closeCursor();
     $stmt = null;
     $db->commit();
-    disconnectDB($db);
     return $headerInfo . $Info . $endInfo;
 }
 
@@ -224,17 +219,161 @@ function printData($printData,$options='all')
     $db->commit();
 
     $return .= "</table>";
-    disconnectDB($db);
     return $return;
 }
+/*
+function printData($printData)
+{
+    
+    $db = connectDB();
+    $db->beginTransaction();
 
-function console_log($output, $with_script_tags = true) {
-    $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) .
-        ');';
-    if ($with_script_tags) {
-        $js_code = '<script>' . $js_code . '</script>';
+    echo "<table border = 'solid black 1px dotted'>";
+
+    switch ($printData) {
+        case "courseassigment":
+            $stmt = $db->prepare('SELECT * FROM courseassigment');
+            $stmt->execute();
+
+            echo "<tr><td> ID </td><td> UserID </td></tr>";
+
+            while ($row = $stmt->fetch()) {
+                echo "<tr>
+				<td>" . $row['ID'] . "</td>
+				<td>" . $row['UserID'] . "</td>
+			</tr>";
+            }
+            break;
+
+        case "courses":
+
+            $stmt = $db->prepare('SELECT * FROM courses');
+            $stmt->execute();
+
+            echo "<tr><td> ID </td><td> Name </td> <td> UserID </td> <td> Label </td></tr>";
+
+            while ($row = $stmt->fetch()) {
+                echo "<tr>
+				<td>" . $row['ID'] . "</td>
+				<td>" . $row['Name'] . "</td>
+				<td>" . $row['UserID'] . "</td>
+				<td>" . $row['Label'] . "</td>
+			</tr>";
+            }
+            break;
+
+        case "grades":
+
+            $stmt = $db->prepare('SELECT * FROM grades');
+            $stmt->execute();
+
+            echo "<tr><td> ID </td><td> Date </td> <td> CoursesID </td> <td> UserID </td> <td> Label </td> <td> Comment </td> <td> Type </td> </tr>";
+
+            while ($row = $stmt->fetch()) {
+                echo "<tr>
+				<td>" . $row['ID'] . "</td>
+				<td>" . $row['Date'] . "</td>
+				<td>" . $row['CoursesID'] . "</td>
+				<td>" . $row['UserID'] . "</td>
+				<td>" . $row['Label'] . "</td>
+				<td>" . $row['Comment'] . "</td>
+				<td>" . $row['Type'] . "</td>
+			</tr>";
+            }
+            break;
+
+        case "groupassigment":
+
+            $stmt = $db->prepare('SELECT * FROM groupassigment');
+            $stmt->execute();
+
+            echo "<tr><td> ID </td><td> UserID </td></tr>";
+
+            while ($row = $stmt->fetch()) {
+                echo "<tr>
+				<td>" . $row['ID'] . "</td>
+				<td>" . $row['UserID'] . "</td>
+			</tr>";
+            }
+            break;
+
+        case "groups":
+
+            $stmt = $db->prepare('SELECT * FROM groups');
+            $stmt->execute();
+
+            echo "<tr><td> ID </td><td> UserID </td></tr>";
+
+            while ($row = $stmt->fetch()) {
+                echo "<tr>
+				<td>" . $row['ID'] . "</td>
+				<td>" . $row['UserID'] . "</td>
+			</tr>";
+            }
+            break;
+
+        case "parentassigment":
+
+            $stmt = $db->prepare('SELECT * FROM parentassigment');
+            $stmt->execute();
+
+            echo "<tr><td> ID </td><td> UserIDParent </td><td> UserIDUser </td></tr>";
+
+            while ($row = $stmt->fetch()) {
+                echo "<tr>
+				<td>" . $row['ID'] . "</td>
+				<td>" . $row['UserIDParent'] . "</td>
+				<td>" . $row['UserIDUser'] . "</td>
+			</tr>";
+            }
+            break;
+
+        case "persondata":
+
+            $stmt = $db->prepare('SELECT * FROM persondata');
+            $stmt->execute();
+
+            echo "<tr><td> UserID </td><td> Name </td> <td> Surname </td><td> Phone </td><td> Postcode </td> <td> Street </td> <td> Apartment </td> <td> City </td></tr>";
+
+            while ($row = $stmt->fetch()) {
+                echo "<tr>
+				<td>" . $row['UserID'] . "</td>
+				<td>" . $row['Name'] . "</td>
+				<td>" . $row['Surname'] . "</td>
+				<td>" . $row['Phone'] . "</td>
+				<td>" . $row['Postcode'] . "</td>
+				<td>" . $row['Street'] . "</td>
+				<td>" . $row['Apartment'] . "</td>
+				<td>" . $row['City'] . "</td>
+			</tr>";
+            }
+
+            break;
+
+        case "user":
+
+            $stmt = $db->prepare('SELECT * FROM user');
+            $stmt->execute();
+
+            $headerInfo = "<tr><th> ID </th><th> Login </th> <th> Password </th><th> Email </th><th> AccountType </th></tr>";
+
+            while ($row = $stmt->fetch()) {
+                $Info .= "<tr>
+				<td>" . $row['ID'] . "</td>
+				<td>" . $row['Login'] . "</td>
+				<td>" . $row['Password'] . "</td>
+				<td>" . $row['Email'] . "</td>
+				<td>" . $row['AccountType'] . "</td>
+			</tr><br>";
+            }
+            return $headerInfo . $Info;
     }
-    echo $js_code;
-}
 
+    $stmt->closeCursor();
+    $stmt = null;
+    $db->commit();
+
+    echo "</table>";
+}
+*/
 ?>
