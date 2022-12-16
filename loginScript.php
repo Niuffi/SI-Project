@@ -16,7 +16,7 @@ error_reporting(E_ALL);
 
         $db = connectDB();
 
-        $sql = "SELECT ID, AccountType FROM user WHERE Password = $password and Login = $username;";
+        $sql = "SELECT ID, AccountType FROM user WHERE Password = $password AND Login = $username;";
         $result = $db->query($sql);
 
         if ($result > 0) {
