@@ -1,9 +1,9 @@
 <?php
-require 'config.php';
+
 
 $found = false;
 $errors = false;
-$conn = new PDO("mysql:host=$DB_HOST;dbname=$DB_DATABASE;", $DB_USER, $DB_PASSWORD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
+$conn = new PDO("mysql:host=127.0.0.1;dbname=projekt_si;", 'root', '', array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8"));
 $_SESSION['loggedIn'] = false;
 
 if (count($_POST) > 0) {

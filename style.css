@@ -1,6 +1,199 @@
-@media (prefers-color-scheme: dark) {
-    body {
-        color: white;
-        background-color: rgb(50,50,50);
-    }
+html,
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-image: url("bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+/*
+tr {
+	display: flex;
+	justify-content: stretch;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+*/
+*:focus {
+  outline: rgba(8, 7, 16, 0.4) solid 2px;
+}
+/*
+NAVBAR.PHP
+*/
+.header {
+  background-color: #f3f6fe;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 20px;
+  border-bottom: 2px gray solid;
+}
+.header-form {
+  display: block;
+  align-items: center;
+  align-content: center;
+  margin: auto 0;
+}
+.header-form input {
+  border: 0;
+  outline: 0;
+  padding: 10px;
+  background-color: #fce4e2;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.header-form input:hover {
+  background-color: #f5c1c3;
+}
+/*
+LOGIN.PHP
+*/
+.login-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+.login-form {
+  width: 40%;
+  min-width: 300px;
+  max-width: 620px;
+  padding: 20px;
+  height: 400px;
+  background-color: rgb(200, 200, 200, 0.1);
+  backdrop-filter: blur(2px);
+  border: rgb(50, 50, 50, 0.3) solid 2px;
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.4);
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  position: relative;
+}
+.login-form h1 {
+  color: rgb(50, 50, 50);
+  text-align: center;
+}
+.login-form label {
+  color: rgb(50, 50, 50);
+  line-height: 1.5;
+  font-size: large;
+  font-weight: bold;
+}
+.login-input,
+.login-selection,
+.login-button {
+  background-color: transparent;
+  border-radius: 20px;
+  border: rgb(50, 50, 50, 0.3) solid 2px;
+  padding: 10px 20px;
+  margin: 10px 0;
+}
+.login-selection {
+  width: 30%;
+}
+.login-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+.login-button:hover {
+  cursor: pointer;
+  background-color: rgb(50, 50, 50, 0.2);
+}
+/*
+USERPAGE.PHP
+*/
+.user-section {
+  width: 100%;
+  height: calc(90% - 2px);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+.user-dashboard-piece {
+  height: 90%;
+  padding: 20px;
+  background-color: rgb(200, 200, 200, 0.1);
+  backdrop-filter: blur(5px);
+  border: rgb(50, 50, 50, 0.3) solid 2px;
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(8, 7, 16, 0.4);
+}
+.dashboard-left {
+  width: 30%;
+  overflow-y: auto;
+}
+.dashboard-right {
+  width: 60%;
+}
+.user-information-table > table {
+  width: 100%;
+  text-align: left;
+}
+.user-information-table > table > tbody > tr {
+  display: flex;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+.user-information-table > table > tbody > tr > th {
+  width: 30%;
+  min-width: 80px;
+}
+.grade {
+  width: 30px;
+  height: 30px;
+  color: black;
+  background-color: lightblue;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-left: 10px;
+  overflow:hidden;
+  transition: all 0.5s ease-in-out;
+  border-radius: 3px;
+  pointer-events:visible;
+}
+.grade > span {
+  position: absolute;
+  top: 7px;
+  left: 12px;
+}
+.grade:hover {
+  width: 150px;
+  height: 100px;
+  
+}
+.course {
+  display: flex; 
+  flex-direction: row;
+}
+.grade-1 {
+  background-color: red;
+}
+.grade-2 {
+  background-color: orange;
+}
+.grade-3 {
+  background-color: yellow;
+}
+.grade-4 {
+  background-color: green;
+}
+.grade-5 {
+  background-color: darkgreen;
 }

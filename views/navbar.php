@@ -1,11 +1,13 @@
-<div>
-    <form action="index.php" method="post">
-        <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true):
+<div class="header">
+    <h1> LOGO </h1>
+    <?php if (isset($_SESSION['loggedIn']) && $_SESSION['loggedIn'] == true):
         ?>
         <?php
-            echo 'Witaj - ' . $_SESSION['user']['Login'];
+            echo '<h2>Witaj - ' . $_SESSION['user']['Login'].'</h2>';
         ?>
-        <input type="submit" value="Wyloguj" name="gotopage" />
+    <form action="index.php" method="post" class="header-form">
+        
+        <input type="submit" value="Wyloguj" name="gotopage" class="header-logout" />
         <?php
         endif;
         ?>
